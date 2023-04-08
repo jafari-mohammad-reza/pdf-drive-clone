@@ -12,7 +12,7 @@ RUN pnpm run build
 CMD ["pnpm" , "run" , "start:debug"]
 FROM node:18-alpine as production
 RUN npm i -g pnpm
-ARG NODE_ENV=production
+ARG NODE_ENV=production 
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /app
