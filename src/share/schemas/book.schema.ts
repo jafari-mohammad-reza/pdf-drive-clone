@@ -1,14 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { IsArray, IsDate, IsEmpty, IsString } from "class-validator";
 import { HydratedDocument, Schema as SchemaTypes } from "mongoose";
-import { Tag } from "./tag.schema";
 
 export type BookDocument = HydratedDocument<Book>;
 
 @Schema()
 export class Book {
   @Prop({ type: SchemaTypes.Types.String, required: true, index: true })
-  @IsString()
+  @IsString() 
   title: String;
   @Prop({ type: SchemaTypes.Types.Date, required: false })
   @IsDate()
