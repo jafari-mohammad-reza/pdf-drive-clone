@@ -1,22 +1,17 @@
-import { Module } from '@nestjs/common';
-import { AuthModule } from './modules/auth/auth.module';
-import { UploadModule } from './modules/upload/upload.module';
-import { DownloadModule } from './modules/download/download.module';
-import { SearchModule } from './modules/search/search.module';
-import { ConfigModuleConf } from './share/config/config-module.conf';
+import {Module} from '@nestjs/common';
+import {ConfigModuleConf} from './share/config/config-module.conf';
 import {MongooseModuleConf, MongooseModuleEntitiesConf} from "./share/config/mongoose-module.conf";
+import { BookModule } from './modules/book/book.module';
 
 @Module({
-  imports: [
-    ConfigModuleConf,
-      MongooseModuleConf,
-      MongooseModuleEntitiesConf,
-    AuthModule,
-    UploadModule,
-    DownloadModule,
-    SearchModule,
-  ],
-  controllers: [],
-  providers: [],
+    imports: [
+        ConfigModuleConf,
+        MongooseModuleConf,
+        MongooseModuleEntitiesConf,
+        BookModule,
+    ],
+    controllers: [],
+    providers: [],
 })
-export class AppModule {}
+export class AppModule {
+}
