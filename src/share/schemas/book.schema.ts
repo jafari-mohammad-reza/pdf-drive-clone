@@ -1,5 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IsArray, IsDate, IsEmpty, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsDate,
+  IsDateString,
+  IsEmpty,
+  IsString,
+} from 'class-validator';
 import { HydratedDocument, Schema as SchemaTypes } from 'mongoose';
 
 export type BookDocument = HydratedDocument<Book>;
@@ -10,15 +16,10 @@ export class Book {
   @IsString()
   title: string;
   @Prop({ type: SchemaTypes.Types.Date, required: false })
-  @IsDate()
-  @IsEmpty()
   publishDate?: Date;
-  @Prop({ type: SchemaTypes.Types.String, required: false, index: true })
-  @IsString()
-  @IsEmpty()
+  @Prop({ type: SchemaTypes.Types.String, required: false })
   publisher?: string;
   @Prop({ type: [SchemaTypes.Types.ObjectId], default: [], ref: 'tags' })
-  @IsArray()
   tags: SchemaTypes.Types.ObjectId[];
   @Prop({ type: SchemaTypes.Types.String, unique: true, required: true })
   uploadPath: string;

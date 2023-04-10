@@ -17,12 +17,15 @@ export class BookService {
   async downloadBook(downloadInput: DownloadBook): Promise<string> {
     const { id } = downloadInput;
     const existBook = this.bookModel.findOne({
-      _id: new Schema.Types.ObjectId(id),
+      _id: id,
     });
     if (!existBook) throw new NotFoundException('Book not found');
     return (await existBook).uploadPath;
   }
-  async searchBook(searchInput: SearchBookDto): Promise<Book[]> {
-    return this.bookModel.find({ $or: [{ ...searchInput }] });
+  async searchBook({ title }: SearchBookDto): Promise<Book[]> {
+    console.log(title);
+    return this.bookModel.find({
+      $text: { $caseSensitive: false, $search: title  },
+    });
   }
 }
