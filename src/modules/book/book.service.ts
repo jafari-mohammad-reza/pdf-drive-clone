@@ -25,7 +25,7 @@ export class BookService {
   async searchBook({ title }: SearchBookDto): Promise<Book[]> {
     console.log(title);
     return this.bookModel.find({
-      $text: { $caseSensitive: false, $search: title  },
+      title
     });
   }
 }

@@ -1,4 +1,6 @@
 import { Controller } from '@nestjs/common';
 
 @Controller('tag')
-export class TagController {}
+export class TagController {
+
+}
